@@ -1,7 +1,8 @@
 export type QwenModelId =
-  | 'qwen3-coder-plus'
-  | 'qwen3-coder-pro'
-  | 'qwen3-coder';
+  | 'qwen-max'
+  | 'qwen-plus'
+  | 'qwen-flash'
+  | 'qwen-coder';
 
 export interface QwenModelDefinition {
   id: QwenModelId;
@@ -17,48 +18,45 @@ export interface QwenModelDefinition {
 
 export const QWEN_MODEL_DEFINITIONS: QwenModelDefinition[] = [
   {
-    id: 'qwen3-coder-plus',
-    name: 'Qwen3 Coder Plus',
-    description: 'Balanced 32k context model optimised for coding tasks',
+    id: 'qwen-max',
+    name: 'Qwen Max',
+    description: 'The most powerful model, ideal for complex tasks.',
     aliases: [
-      'qwen3-coder-plus',
-      'qwen3-coder+',
-      'qwen3-plus',
-      'qwen3 coder plus',
-      'qwen-coder-plus',
-      'qwen-coder+',
+      'qwen-max',
+      'qwenmax',
+    ],
+  },
+  {
+    id: 'qwen-plus',
+    name: 'Qwen Plus',
+    description: 'A balance of performance, speed, and cost.',
+    aliases: [
       'qwen-plus',
-      'qwen coder plus',
+      'qwenplus',
     ],
   },
   {
-    id: 'qwen3-coder-pro',
-    name: 'Qwen3 Coder Pro',
-    description: 'Larger 128k context model with stronger reasoning',
+    id: 'qwen-flash',
+    name: 'Qwen Flash',
+    description: 'Fast and low-cost, ideal for simple jobs.',
     aliases: [
-      'qwen3-coder-pro',
-      'qwen3-pro',
-      'qwen3 coder pro',
-      'qwen-coder-pro',
-      'qwen-pro',
-      'qwen coder pro',
+      'qwen-flash',
+      'qwenflash',
     ],
   },
   {
-    id: 'qwen3-coder',
-    name: 'Qwen3 Coder',
-    description: 'Default quick model for fast iteration',
+    id: 'qwen-coder',
+    name: 'Qwen Coder',
+    description: 'An excellent code model that excels at tool calling and environment interaction.',
     aliases: [
-      'qwen3-coder',
-      'qwen3',
-      'qwen coder',
       'qwen-coder',
+      'qwencoder',
       'qwen',
     ],
   },
 ];
 
-export const QWEN_DEFAULT_MODEL: QwenModelId = 'qwen3-coder-plus';
+export const QWEN_DEFAULT_MODEL: QwenModelId = 'qwen-plus';
 
 const QWEN_MODEL_ALIAS_MAP: Record<string, QwenModelId> = QWEN_MODEL_DEFINITIONS.reduce(
   (map, definition) => {

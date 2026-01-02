@@ -9,13 +9,18 @@ export interface CodexModelDefinition {
   supportsImages?: boolean;
 }
 
-export const CODEX_DEFAULT_MODEL = 'gpt-5';
+export const CODEX_DEFAULT_MODEL = 'gpt-5.2';
 
 export const CODEX_MODEL_DEFINITIONS: CodexModelDefinition[] = [
   {
-    id: 'gpt-5',
-    name: 'GPT-5',
+    id: 'gpt-5.2',
+    name: 'GPT-5.2',
     description: 'OpenAI flagship reasoning model',
+  },
+  {
+    id: 'gpt-5.2-thinking',
+    name: 'GPT-5.2 Thinking',
+    description: 'The best model yet for real-world, professional use',
   },
   {
     id: 'gpt-4o',
@@ -52,9 +57,11 @@ export const CODEX_MODEL_DEFINITIONS: CodexModelDefinition[] = [
 ];
 
 const ALIAS_MAP: Record<string, string> = {
-  'gpt5': 'gpt-5',
-  'gpt_5': 'gpt-5',
-  'gpt-5.0': 'gpt-5',
+  'gpt5': 'gpt-5.2',
+  'gpt-5': 'gpt-5.2',
+  'gpt_5': 'gpt-5.2',
+  'gpt-5.0': 'gpt-5.2',
+  'gpt-5.2-think': 'gpt-5.2-thinking',
   'gpt-4o-mini-high': 'gpt-4o-mini',
   'gpt-4o-mini-low': 'gpt-4o-mini',
   'claude-sonnet-3.5': 'claude-3.5-sonnet',
