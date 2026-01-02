@@ -1,5 +1,5 @@
 export type ClaudeModelId =
-  | 'claude-opus-4-1-20250805'
+  | 'claude-opus-4-5-20251101'
   | 'claude-sonnet-4-5-20250929'
   | 'claude-haiku-4-5-20251001';
 
@@ -17,24 +17,18 @@ export interface ClaudeModelDefinition {
 
 export const CLAUDE_MODEL_DEFINITIONS: ClaudeModelDefinition[] = [
   {
-    id: 'claude-opus-4-1-20250805',
-    name: 'Claude Opus 4.1',
-    description: 'Newest Opus release with the strongest reasoning skills',
+    id: 'claude-opus-4-5-20251101',
+    name: 'Claude Opus 4.5',
+    description: 'Anthropic\'s most intelligent model, for coding, agents, and enterprise workflows.',
     supportsImages: true,
     aliases: [
-      'claude-opus-4-1-20250805',
-      'claude-opus-4-1',
-      'claude-opus-4.1',
-      'claude-opus-4',
+      'claude-opus-4-5-20251101',
+      'claude-opus-4-5',
+      'claude-opus-4.5',
       'claude-opus',
-      'opus-4-1-20250805',
-      'opus-4-1',
-      'opus-4.1',
-      'opus-4',
+      'opus-4-5',
+      'opus-4.5',
       'opus',
-      'claude-3-opus',
-      'claude-3-opus-20240229',
-      'claude-3-opus-latest',
     ],
   },
   {

@@ -11,12 +11,12 @@ export interface CursorModelDefinition {
   supportsImages?: boolean;
 }
 
-export const CURSOR_DEFAULT_MODEL = 'gpt-5';
+export const CURSOR_DEFAULT_MODEL = 'gpt-5.2';
 
 export const CURSOR_MODEL_DEFINITIONS: CursorModelDefinition[] = [
   {
-    id: 'gpt-5',
-    name: 'GPT-5',
+    id: 'gpt-5.2',
+    name: 'GPT-5.2',
     description: 'Cursor Agent default multi-model router (auto-selects best model)',
   },
   {
@@ -32,8 +32,9 @@ export const CURSOR_MODEL_DEFINITIONS: CursorModelDefinition[] = [
 ];
 
 const CURSOR_MODEL_ALIASES: Record<string, string> = {
-  'gpt5': 'gpt-5',
-  'gpt-5.0': 'gpt-5',
+  'gpt5': 'gpt-5.2',
+  'gpt-5': 'gpt-5.2',
+  'gpt-5.0': 'gpt-5.2',
   'sonnet4': 'sonnet-4',
   'sonnet-4.5': 'sonnet-4',
   'sonnet-45': 'sonnet-4',
@@ -52,7 +53,7 @@ const CURSOR_MODEL_ALIASES: Record<string, string> = {
 const KNOWN_CURSOR_MODEL_IDS = new Set(CURSOR_MODEL_DEFINITIONS.map((model) => model.id));
 
 const CURSOR_CLI_MODEL_IDS: Record<string, string> = {
-  'gpt-5': 'gpt-5',
+  'gpt-5.2': 'gpt-5.2',
   'sonnet-4': 'sonnet-4',
   'sonnet-4-thinking': 'sonnet-4-thinking',
 };
