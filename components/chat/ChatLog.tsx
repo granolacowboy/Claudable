@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useRef, ReactElement, useCallback } from 'react';
+import React, { useEffect, useState, useRef, ReactElement, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { useWebSocket } from '@/hooks/useWebSocket';
@@ -2227,7 +2227,7 @@ const ToolResultMessage = ({
 };
 
   // Function to clean user messages by removing think hard instruction and chat mode instructions
-  const cleanUserMessage = (content: string) => {
+  const cleanUserMessage = useCallback((content: string) => {
     if (!content) return content;
     
     let cleanedContent = content;
@@ -2239,7 +2239,7 @@ const ToolResultMessage = ({
     cleanedContent = cleanedContent.replace(/\n\nDo not modify code, only answer to the user's request\.$/, '');
     
     return cleanedContent.trim();
-  };
+  }, []);
 
   // Function to render content with thinking tags
   const renderContentWithThinking = (content: string): ReactElement => {
@@ -2435,7 +2435,7 @@ const ToolResultMessage = ({
   };
 
   // Message filtering function - hide internal tool results and system messages
-  const shouldDisplayMessage = (message: ChatMessage) => {
+  const shouldDisplayMessage = useCallback((message: ChatMessage) => {
     const metadata = message.metadata as Record<string, unknown> | null | undefined;
     const contentText = normalizeChatContent(message.content);
 
@@ -2525,7 +2525,7 @@ const ToolResultMessage = ({
     }
 
     return true;
-  };
+  }, [ensureStableMessageId, isToolUsageMessage]);
 
   const renderLogEntry = (log: LogEntry) => {
     switch (log.type) {
@@ -2810,7 +2810,8 @@ const ToolResultMessage = ({
         )}
 
         {/* Render chat messages */}
-        {messages.filter(shouldDisplayMessage).map((message, index) => {
+        {/* Memoize the rendered messages to prevent re-rendering on every state change. */}
+        {useMemo(() => messages.filter(shouldDisplayMessage).map((message, index) => {
           const messageMetadata = message.metadata as Record<string, unknown> | null;
           const messageText = normalizeChatContent(message.content);
           const isToolMessage = message.messageType === 'tool_result' || isToolUsageMessage(message);
@@ -3015,7 +3016,7 @@ const ToolResultMessage = ({
                 )}
             </div>
           );
-        })}
+        }), [messages, shouldDisplayMessage, expandedToolMessages, failedImageUrls, cleanUserMessage, handleToolMessageToggle, ensureStableMessageId, isToolUsageMessage])}
         
         {/* Render filtered agent logs as plain text */}
         {logs.filter(log => {
